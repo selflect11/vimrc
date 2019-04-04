@@ -346,31 +346,31 @@ nnoremap <Leader>ba<Space> :badd<Space>
 nnoremap <Leader>b<Space> :b<Space>
 
 " for manipulating registers
-"    " cycling registers
-"    nnoremap <Leader>s :let @1=@" \| let @"=@+ \| let @+=@1<CR>
-"    nnoremap <Leader>r <S-r><C-r>"<Esc>
-"    " for getting chunks of text together, just in case
-"    nnoremap <Leader>a "A
-"    vnoremap <Leader>a "A
-"    nnoremap <Leader>b "B
-"    vnoremap <Leader>b "B
-"    nnoremap <Leader>c "C
-"    vnoremap <Leader>c "C
-"    " cleaning registers
-"    nnoremap <Leader>aa :let @a=@_<CR>
-"    nnoremap <Leader>bb :let @b=@_<CR>
-"    nnoremap <Leader>cc :let @c=@_<CR>
-"    " swaping registers
-"    nnoremap <Leader>ab :let @1=@a \| let @a=@b \| let @b=@1<CR>
-"    nnoremap <Leader>ba :let @1=@a \| let @a=@b \| let @b=@1<CR>
-"    nnoremap <Leader>ac :let @1=@a \| let @a=@c \| let @c=@1<CR>
-"    nnoremap <Leader>ca :let @1=@a \| let @a=@c \| let @c=@1<CR>
-"    nnoremap <Leader>bc :let @1=@b \| let @b=@c \| let @c=@1<CR>
-"    nnoremap <Leader>cb :let @1=@b \| let @b=@c \| let @c=@1<CR>
-"    " copying what was the last search to clipboard
-"    nnoremap <silent> <Leader>/ :let @1=@" \| let @"=@/ \| let @+=@1<CR>
-"    " copying what was the last command to clipboard
-"    nnoremap <silent> <Leader>: :let @1=@" \| let @"=@: \| let @+=@1<CR>
+    " cycling registers
+    nnoremap <Leader>s :let @1=@" \| let @"=@+ \| let @+=@1<CR>
+    nnoremap <Leader>r <S-r><C-r>"<Esc>
+    " for getting chunks of text together, just in case
+    nnoremap <Leader>a "A
+    vnoremap <Leader>a "A
+    nnoremap <Leader>b "B
+    vnoremap <Leader>b "B
+    nnoremap <Leader>c "C
+    vnoremap <Leader>c "C
+    " cleaning registers
+    nnoremap <Leader>aa :let @a=@_<CR>
+    nnoremap <Leader>bb :let @b=@_<CR>
+    nnoremap <Leader>cc :let @c=@_<CR>
+    " swaping registers
+    nnoremap <Leader>ab :let @1=@a \| let @a=@b \| let @b=@1<CR>
+    nnoremap <Leader>ba :let @1=@a \| let @a=@b \| let @b=@1<CR>
+    nnoremap <Leader>ac :let @1=@a \| let @a=@c \| let @c=@1<CR>
+    nnoremap <Leader>ca :let @1=@a \| let @a=@c \| let @c=@1<CR>
+    nnoremap <Leader>bc :let @1=@b \| let @b=@c \| let @c=@1<CR>
+    nnoremap <Leader>cb :let @1=@b \| let @b=@c \| let @c=@1<CR>
+    " copying what was the last search to clipboard
+    nnoremap <silent> <Leader>/ :let @1=@" \| let @"=@/ \| let @+=@1<CR>
+    " copying what was the last command to clipboard
+    nnoremap <silent> <Leader>: :let @1=@" \| let @"=@: \| let @+=@1<CR>
 
 " marks mapping
 noremap ´ `
@@ -432,21 +432,21 @@ map <PageDown> <Nop>
 map! <PageDown> <Nop>
 "}}}
 " augroups for file settings{{{
-"augroup pdf_not_modifiable
-"    autocmd!
-"    autocmd BufWinEnter *.pdf setlocal nomodifiable
-"augroup END
+augroup pdf_not_modifiable
+    autocmd!
+    autocmd BufWinEnter *.pdf setlocal nomodifiable
+augroup END
 
 " TODO: find out why BufAdd doens't work but BufNewFile does
-"augroup trash_settings
-"    autocmd!
-"    autocmd BufNewFile trash.* setlocal buftype=nofile bufhidden=hide noswapfile smartindent | filetype indent on
-"augroup END"}}}
+augroup trash_settings
+    autocmd!
+    autocmd BufNewFile trash.* setlocal buftype=nofile bufhidden=hide noswapfile smartindent | filetype indent on
+augroup END"}}}
 
 " FUCK YEAH!!
 " when opening an empty vim file, don't open the [No Name]  buffer, rather the trash one
 " TODO: figure out why the 'badd trash' command doesnt trigger the trash_settings autocmd
-"autocmd VimEnter * if @%=='' | :badd trash.txt | bd! | setlocal buftype=nofile bufhidden=hide noswapfile
+autocmd VimEnter * if @%=='' | :badd trash.txt | bd! | setlocal buftype=nofile bufhidden=hide noswapfile
 
 "PLUGINS settings{{{
 
@@ -487,7 +487,6 @@ filetype indent on
 "}}}
 
 " Airline{{{
-" airline theme
 let g:airline_theme='jellybeans'
 let g:airline_powerline_fonts = 1"}}}
 
@@ -517,7 +516,6 @@ Helptags
 " TODO: translate to function
 "   creates space until column nº 77
 let @l = '100A  77|D:s/ / /g$'
-" TODO: Maybe group these in a 'sort law' function?
 "   removes things in parentheses
 let @p = ':s/\v\s+\(.{-}\)//g'        " current line or selection only
 
@@ -621,8 +619,6 @@ def space_to_nbsp(line):
     return line
 
 def div(line):
-#carriage_line_pat = re.compile('\\r(.+?)\\r', re.UNICODE)
-#carriage_to_div = re.sub(carriage_line_pat, r'<div>\g<1></div>', line)
     line_pat = re.compile(r"^.+$", re.UNICODE)
     fixed_text = re.sub(line_pat, r'<div>\g<0></div>', line)
     return fixed_text
@@ -745,7 +741,6 @@ function! ExtraSpaceDelete()
 endfunction
 
 function! MyDatePut()
-    "   god, this is so mutch better than to save it on a register...
     "   gets time and date surrounded by brackets
     r! date /t
     r! time /t
@@ -762,13 +757,12 @@ function! ClozeIncrement()
     normal gv
 endfunction
 
-" removes all strike tags from HTML
 function! RemoveStrike()
     %s/\v\<strike\>\_.{-}\<\/strike\>//g
 endfunction
 
 " thank you lord for: [^\(]
-" TODO: redo in python
+" TODO: remake it in python
 function! RemoveAddendum() range
     " removes trailing spaces
     %s/\v[  \t]+$//ge
@@ -779,7 +773,6 @@ function! RemoveAddendum() range
     execute a:firstline . "," . a:lastline . 's/\v[:;.]?(\se)?\zs\s*\([^\(]{-}(' . laws . ').+\)[:;.]?$//ge'
 endfunction
 command! -range RemoveAddendum <line1>,<line2>call RemoveAddendum()
-" finnally getting this ↑
 
 " some beautiful shit right there... TODO: study this
 function! Redir(cmd)
@@ -822,7 +815,6 @@ function! CleanStringForBrowserCMD(path)
     return clean_spaces_path
 endfunction
 
-" Finnaly!
 function! OpenCurrentFileOnBrowser()
     let curr_file = CleanStringForBrowserCMD(expand('%:p'))
     call open_url#open('file:///' . curr_file)
@@ -845,7 +837,7 @@ function! ToggleSmartSearch()
     endif
 endfunction
 
-" TODO... saquito. Consegui o caso geral. Agora é fazer esse ↓
+" TODO...
 function! ToggleAnkiHighligh()
     if !hlexists("cloze")
         " colorize the cloze brackets
@@ -876,7 +868,6 @@ function! DeleteCurrentFile()
     endif
 endfunction
 
-" praise the lord for silent
 function! EraseBlankLines() range
     silent! execute a:firstline . "," . a:lastline . 'g/\v^\s*$/d'
 endfunction
