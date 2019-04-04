@@ -384,15 +384,15 @@ vnoremap / /\v
 
 " for changing font size
 nnoremap <C-Up> :silent! let &guifont = substitute(
-" \ &guifont,
-" \ ':h\zs\d\+',
-" \ '\=eval(submatch(0)+1)',
-" \ '')<CR><CR>
+ \ &guifont,
+ \ ':h\zs\d\+',
+ \ '\=eval(submatch(0)+1)',
+ \ '')<CR><CR>
 nnoremap <C-Down> :silent! let &guifont = substitute(
-" \ &guifont,
-" \ ':h\zs\d\+',
-" \ '\=eval(submatch(0)-1)',
-" \ '')<CR><CR>
+ \ &guifont,
+ \ ':h\zs\d\+',
+ \ '\=eval(submatch(0)-1)',
+ \ '')<CR><CR>
 
 " my digraph mappings
 " for writing lists
